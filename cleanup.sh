@@ -81,6 +81,8 @@ fi
 if [ $CLEAR_STORAGE -eq 1 ]; then
     cd "${BASE_DIR}"
     sudo rm -rf storage/runtime/* || true
+    mkdir -p storage/runtime
+    sudo chmod -R 775 storage/runtime
     sudo rm -rf storage/logs/*.[0-9]* || true
 fi
 
