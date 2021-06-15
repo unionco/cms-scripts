@@ -74,14 +74,14 @@ set -eux;
 
 # Set permissions
 if [ ! -z $OWNER ]; then
-    chown "${OWNER}" "${BASE_DIR}"
+    chown -R "${OWNER}" "${BASE_DIR}"
 fi
 
 # Clear storage
 if [ $CLEAR_STORAGE -eq 1 ]; then
     cd "${BASE_DIR}"
-    @rm -rf storage/runtime
-    @rm -rf storage/logs/*.[0-9]*
+    rm -rf storage/runtime || true
+    rm -rf storage/logs/*.[0-9]* || true
 fi
 
 # Clear caches
