@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-printf "\n============= Starting cleanup.sh [%s] =============\n" $(date +'%Y-%m-%d %H:%i:%s')
+printf "\n============= Starting cleanup.sh [%s] =============\n" $(date +"%Y-%m-%d %H:%i:%s")
 
 BASE_DIR=""
 PHP=""
@@ -80,7 +80,7 @@ fi
 # Clear storage
 if [ $CLEAR_STORAGE -eq 1 ]; then
     cd "${BASE_DIR}"
-    sudo rm -rf storage/runtime || true
+    sudo rm -rf storage/runtime/* || true
     sudo rm -rf storage/logs/*.[0-9]* || true
 fi
 
