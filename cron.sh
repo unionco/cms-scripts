@@ -64,7 +64,7 @@ while getopts ":d:p:o:hsc" options; do
     esac
 done
 
-printf "\n============= Starting cleanup.sh [%s] =============\n" $(date +"%Y-%m-%d %H:%M:%s")
+printf "\n============= Starting cleanup.sh [%s] =============\n" $(date +"%Y-%m-%d %H:%M:%S")
 
 if [ -z $BASE_DIR ]; then
     echo "Error: -d flag is required" >2
