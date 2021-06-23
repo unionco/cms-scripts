@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-printf "\n============= Starting cleanup.sh [%s] =============\n" $(date +"%Y-%m-%d %H:%i:%s")
 
 BASE_DIR=""
 PHP=""
@@ -12,11 +11,12 @@ RUN_QUEUE=0
 usage() {
     printf "Usage: $0 [OPTS] -d SITE_DIR\n" 1>&2
     printf "Options:\n" 1>&2
+    printf "\t-d SITE_DIR\tpath to CMS base directory\n" 1>&2
     printf "\t-p PHP_BIN\tpath to PHP executable\n" 1>&2
-    printf "\t-o OWNER\tuser:group for cms directories\n" 1>&2
+    printf "\t-o OWNER\tuser:group for writeable cms directories\n" 1>&2
     printf "\t-s\t\tclear storage\n" 1>&2
     printf "\t-c\t\tclear cache\n" 1>&2
-    printf "\t-d SITE_DIR\tpath to CMS base directory\n" 1>&2
+    printf "\t-q\t\trun the queue\n" 1>&2
 }
 
 exit_abnormal() {
@@ -54,12 +54,17 @@ while getopts ":d:p:o:hsc" options; do
         c)
             CLEAR_CACHE=1
             ;;
+        q)
+            RUN_QUEUE=1
+            ;;
         :)
             echo "Error: -${OPTARG} requires an argument"
             exit_abnormal
             ;;
     esac
 done
+
+printf "\n============= Starting cleanup.sh [%s] =============\n" $(date +"%Y-%m-%d %H:%M:%s")
 
 if [ -z $BASE_DIR ]; then
     echo "Error: -d flag is required" >2
