@@ -38,3 +38,21 @@ bash cron.sh \
 ```
 
 
+# Logging
+using cron, output the script like this:
+`*/1 * * * * <command> >> ~/.cron.log`
+
+Rotate the log using `logrotate`:
+`sudo vim /etc/logrotate.d/cms-cleanup`
+
+```
+/home/ubuntu/.cron.log {
+        su ubuntu ubuntu
+        rotate 7
+        daily
+        compress
+        missingok
+        notifempty
+        create 666 ubuntu ubuntu
+}
+```
