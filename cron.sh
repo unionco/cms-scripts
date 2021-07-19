@@ -33,7 +33,7 @@ print_opts() {
     echo "Owner: $OWNER"
 }
 
-while getopts ":d:p:o:hsc" options; do
+while getopts ":d:p:o:hsqc" options; do
     case "${options}" in
         d)
             BASE_DIR=${OPTARG}
@@ -64,7 +64,8 @@ while getopts ":d:p:o:hsc" options; do
     esac
 done
 
-printf "\n============= Starting cleanup.sh [%s] =============\n" '$(date +"%Y-%m-%d %H:%M:%S")'
+current_time=$(date +"%Y-%m-%d %H:%M:%S")
+printf "\n============= Starting cleanup.sh [%s] =============\n" "$current_time"
 
 if [ -z $BASE_DIR ]; then
     echo "Error: -d flag is required" >2
